@@ -8,7 +8,8 @@ class hmSpider(scrapy.Spider):
     name = 'hm_spider'
     allow_domains = ["http://www.hm.com/ca/"]
     start_urls = [
-        "http://www.hm.com/ca/subdepartment/MEN?Nr=4294927065#Nr=4294927065"
+        "http://www.hm.com/ca/subdepartment/MEN?Nr=4294927065#Nr=4294927065",
+        "http://www.hm.com/ca/subdepartment/MEN?Nr=4294927065#Nr=4294956362"
     ]
 
     pipeline = set([
@@ -17,7 +18,6 @@ class hmSpider(scrapy.Spider):
 
     def parse(self, response):
         item_list = response.css('.products')[0].css('.has-secondary-image')
-        print(item_list)
         for item in item_list:
             link = item.css('a::attr(href)').extract()[0]
             url = response.urljoin(link)
