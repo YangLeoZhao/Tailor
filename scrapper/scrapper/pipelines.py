@@ -94,17 +94,6 @@ class hmPipeline(object):
 class uniqloPipeline(object):
     collection_name = 'tops'
 
-    def __init__(self, mongo_uri, mongo_db):
-        self.mongo_uri = mongo_uri
-        self.mongo_db = mongo_db
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        return cls(
-            mongo_uri='mongodb://127.0.0.1/Tailor',
-            mongo_db='Tailor'
-        )
-
     def open_spider(self, spider):
         self.client = pymongo.MongoClient(self.mongo_uri)
         self.db = self.client[self.mongo_db]
