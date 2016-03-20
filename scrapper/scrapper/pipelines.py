@@ -73,11 +73,10 @@ class hmPipeline(object):
     collection_name = 'tops'
 
     def open_spider(self, spider):
-        self.client = pymongo.MongoClient(self.mongo_uri)
-        self.db = self.client[self.mongo_db]
+        self.db = connect_to_mongo()
 
     def close_spider(self, spider):
-        self.client.close()
+        disconnect_from_mongo(self.db)
 
     @check_spider_pipeline
     def process_item(self, item, spider):
@@ -95,11 +94,10 @@ class uniqloPipeline(object):
     collection_name = 'tops'
 
     def open_spider(self, spider):
-        self.client = pymongo.MongoClient(self.mongo_uri)
-        self.db = self.client[self.mongo_db]
+        self.db = connect_to_mongo()
 
     def close_spider(self, spider):
-        self.client.close()
+        disconnect_from_mongo(self.db)
 
     @check_spider_pipeline
     def process_item(self, item, spider):
