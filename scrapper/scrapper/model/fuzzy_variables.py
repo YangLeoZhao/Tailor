@@ -1,5 +1,5 @@
 from collections import OrderedDict
-# Test
+
 class color(object):
     '''
     If the user like the color then user satisfiability increases.
